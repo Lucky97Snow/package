@@ -16,7 +16,7 @@ class InterfaceResponse {
 private:
 	bool isSucess;
 	string message;
-	T* data;
+	T data;
 
 private:
 	//Interface是封装的，所以用户不知道是否回复了message，取消无message接口
@@ -32,7 +32,7 @@ private:
 	//	isSucess = isSuc;
 	//	data = t;
 	//}
-	InterfaceResponse(bool isSuc, string msg, T* t) {
+	InterfaceResponse(bool isSuc, string msg, T t) {
 		isSucess = isSuc;
 		message = msg;
 		data = t;
@@ -46,7 +46,7 @@ public:
 		return message;
 	}
 	T getData() {
-		return *data;
+		return data;
 	}
 
 public:
@@ -56,10 +56,10 @@ public:
 	static InterfaceResponse* createBySuccessMessage(string msg) {
 		return new InterfaceResponse(true, msg);
 	}
-	//static InterfaceResponse* createBySuccessData(T* t) {
+	//static InterfaceResponse* createBySuccessData(T t) {
 	//	return new InterfaceResponse(true, t);
 	//}
-	static InterfaceResponse* createBySuccessMessageAndData(string msg, T* t) {
+	static InterfaceResponse* createBySuccessMessageAndData(string msg, T t) {
 		return new InterfaceResponse(true, msg, t);
 	}
 	//static InterfaceResponse* createByError() {

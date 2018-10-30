@@ -1,5 +1,3 @@
-#pragma once
-
 // 下列 ifdef 块是创建使从 DLL 导出更简单的
 // 宏的标准方法。此 DLL 中的所有文件都是用命令行上定义的 HLAPORTINTERFACE_EXPORTS
 // 符号编译的。在使用此 DLL 的
@@ -51,33 +49,33 @@ public:
 	//接口方法
 public:
 	//创建联邦
-	InterfaceResponse<void>* createFederation();
+	InterfaceResponse<bool>* createFederation();
 	//加入联邦，返回联邦成员ID，失败返回-1，默认加入fed文件中定义的联邦名称
 	InterfaceResponse<long>* joinFederation();
 	//退出联邦
-	InterfaceResponse<void>* resignFederation();
+	InterfaceResponse<bool>* resignFederation();
 	//撤销联邦，默认销毁fed文件中定义的联邦名称
-	InterfaceResponse<void>* destroyFederation();
+	InterfaceResponse<bool>* destroyFederation();
 	//初始化句柄，目前仅限对象类，仅限一条
-	InterfaceResponse<void>* initOneHandle(ObjectClassSet&);
+	InterfaceResponse<bool>* initOneHandle(ObjectClassSet&);
 	//注册联邦同步点
-	InterfaceResponse<void>* registerSynchronization(string label);
+	InterfaceResponse<bool>* registerSynchronization(string label);
 	//运行到同步点
-	InterfaceResponse<void>* synchronizationAchieved(string label);
+	InterfaceResponse<bool>* synchronizationAchieved(string label);
 	//设置时间策略
-	InterfaceResponse<void>* enableTimePolicy(double lookahead);
+	InterfaceResponse<bool>* enableTimePolicy(double lookahead);
 	//发布对象类，目前仅限对象类，仅限一条
-	InterfaceResponse<void>* publishOne(ObjectClassSet&);
+	InterfaceResponse<bool>* publishOne(ObjectClassSet&);
 	//订阅对象类，目前仅限对象类，仅限一条
-	InterfaceResponse<void>* subscribeOne(ObjectClassSet&);
+	InterfaceResponse<bool>* subscribeOne(ObjectClassSet&);
 	//注册对象类
 	InterfaceResponse<long>* registerObject(string className);
 	//发送对象类，目前仅限对象类
-	InterfaceResponse<void>* sendObject(RTI::ObjectHandle, RTI::AttributeHandleValuePairSet*);
+	InterfaceResponse<bool>* sendObject(RTI::ObjectHandle, RTI::AttributeHandleValuePairSet*);
 	//时间步进
-	InterfaceResponse<void>* advanceTime(double timestep);
+	InterfaceResponse<bool>* advanceTime(double timestep);
 	//删除对象类，目前仅限对象类
-	InterfaceResponse<void>* deleteOne(RTI::ObjectHandle);
+	InterfaceResponse<bool>* deleteOne(RTI::ObjectHandle);
 	//通过类句柄定位对象类
 	InterfaceResponse<long>* getObjectClass(RTI::ObjectHandle objectHandle);
 	//获取当前时间
